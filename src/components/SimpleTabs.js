@@ -7,6 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import PersistentDrawer from './PersistentDrawer';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -29,8 +30,8 @@ function TabPanel(props) {
         {...other}
         >
             {value===index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
+                <Box p={0}>
+                    <Typography component={'span'}>{children}</Typography>
                 </Box>
             )}
         </div>
@@ -78,26 +79,7 @@ export default function SimpleTabs() {
                     Item One
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <Drawer anchor='left' open={true} variant='persistent' className={classes.drawer} classes={{paper: classes.drawerPaper}}>
-                        <List>
-                            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                            ))}
-                        </List>
-                        <Divider />
-                        <List>
-                            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                            ))}
-                        </List>
-                    </Drawer>
-                    Item Two
+                    <PersistentDrawer></PersistentDrawer>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
                     <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik" title="W3Schools Free Online Web Tutorials"></iframe>

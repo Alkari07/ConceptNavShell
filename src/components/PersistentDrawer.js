@@ -17,8 +17,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Container from '@material-ui/core/Container';
 
 const drawerWidth = 240;
+const contentOffset = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,12 +63,12 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(1),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: 0,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -95,12 +97,16 @@ export default function PersistentDrawerLeft() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      <Container position="fixed"
+          className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}>
+      {/* <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-      >
+      > */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -111,11 +117,11 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography component={'span'} variant="h6" noWrap>
             Persistent drawer
           </Typography>
         </Toolbar>
-      </AppBar>
+      {/* </AppBar> */}
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -154,7 +160,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
+        <div /*className={classes.drawerHeader}*/ />
             <div style={{height: 630+'px'}}>
             <iframe className='iframeContent'
             frameBorder='0'
@@ -164,6 +170,7 @@ export default function PersistentDrawerLeft() {
             src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik" title="W3Schools Free Online Web Tutorials"></iframe>
             </div>
       </main>
+      </Container>
     </div>
   );
 }

@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <PersistentDrawer></PersistentDrawer>
+        <SimpleTabs></SimpleTabs>
       </div>
     )
   }
