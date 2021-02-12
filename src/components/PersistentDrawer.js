@@ -20,7 +20,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import Container from '@material-ui/core/Container';
 
 const drawerWidth = 240;
-const contentOffset = 100;
+const contentOffset = 300;
+const iframeHeight = 857;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
-    marginRight: 0
+    marginRight: -drawerWidth
   },
 }));
 
@@ -166,7 +167,7 @@ export default function PersistentDrawerLeft(props) {
         })}
       >
         <div /*className={classes.drawerHeader}*/ />
-            <div style={{height: 630+'px'}}>
+            <div style={{height: iframeHeight+'px'}}>
             <iframe className='iframeContent'
             frameBorder='0'
             height='100%'
