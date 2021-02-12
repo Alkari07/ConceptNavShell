@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PersistentDrawer from './PersistentDrawer';
+import config from '../config.json';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -70,7 +71,7 @@ export default function SimpleTabs() {
         <div className={classes.root}>
             <AppBar position='static'>
                 <Tabs value={value} onChange={handleChange} aria-label="Simple tabs example" centered>
-                    <Tab label="Item One" {...a11yProps(0)} />
+                    <Tab label={config.tabDefs[0].title} {...a11yProps(0)} />
                     <Tab label='Item Two' {...a11yProps(1)}/>
                     <Tab label = 'Item Three' {...a11yProps(2)}/>
                 </Tabs>

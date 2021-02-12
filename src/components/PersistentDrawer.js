@@ -100,6 +100,10 @@ export default function PersistentDrawerLeft(props) {
     setOpen(false);
   };
 
+  const onListItemSelection = (index) => {
+    console.log("Item selected", index );
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -145,7 +149,7 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button onClick={()=>onListItemSelection(index)} key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
@@ -154,7 +158,7 @@ export default function PersistentDrawerLeft(props) {
         <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem button onClick={()=>onListItemSelection(index)} key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
