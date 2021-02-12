@@ -20,7 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import Container from '@material-ui/core/Container';
 
 const drawerWidth = 240;
-const contentOffset = 240;
+const contentOffset = 100;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: 0,
+    marginLeft: -contentOffset,
+    marginRight: -contentOffset
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -76,10 +77,14 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+    marginRight: 0
   },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
+  const {
+    children, iframeSrc, title, ...other
+  } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -118,7 +123,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography component={'span'} variant="h6" noWrap>
-            Persistent drawer
+            {title}
           </Typography>
         </Toolbar>
       {/* </AppBar> */}
@@ -167,7 +172,7 @@ export default function PersistentDrawerLeft() {
             height='100%'
             width='100%'
             id = 'contentIframe'
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik" title="W3Schools Free Online Web Tutorials"></iframe>
+            src={iframeSrc} title="W3Schools Free Online Web Tutorials"></iframe>
             </div>
       </main>
       </Container>

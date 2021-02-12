@@ -79,10 +79,17 @@ export default function SimpleTabs() {
                     Item One
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <PersistentDrawer></PersistentDrawer>
+                    <PersistentDrawer 
+                    title ={'Fire Fighting Dashboard'}
+                    iframeSrc={'https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik'}>
+                    </PersistentDrawer>
+
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik" title="W3Schools Free Online Web Tutorials"></iframe>
+                    <PersistentDrawer 
+                    title ={'Police Dashboard'}
+                    iframeSrc={'https://www.tutorialrepublic.com'}>
+                    </PersistentDrawer>
                 </TabPanel>
             </AppBar>
         </div>
