@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -11,7 +10,6 @@ import PersistentDrawer from './PersistentDrawer';
 import config from '../config.json';
 import HomeIcon from '@material-ui/icons/Home';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import { IconButton } from '@material-ui/core';
 
 function TabPanel(props) {
@@ -58,9 +56,15 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleTabs() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [contentIndex=0, setContentIndex] = React.useState(0);
 
     const handleChange = (event,newValue) => {
         setValue(newValue);
+    }
+
+    const handleContentChange = (newIndex) => {
+        console.log("Current Content Index: ", contentIndex);
+        setContentIndex(newIndex);
     }
 
     return (
@@ -82,8 +86,11 @@ export default function SimpleTabs() {
                         {config.tabDefs.map((tab, index)=> {
                             return <TabPanel value={value} key={index} index={index}>
                                 <PersistentDrawer 
-                                    title ={config.tabDefs[value].content[0].label}
-                                    iframeSrc={config.tabDefs[value].content[0].url}>
+                                    handleContentChange = {handleContentChange}
+                                    title ={config.tabDefs[value].content[contentIndex] ? 
+                                        config.tabDefs[value].content[contentIndex].label : config.tabDefs[value].content[0].label}
+                                    iframeSrc={config.tabDefs[value].content[contentIndex] ? 
+                                        config.tabDefs[value].content[contentIndex].url : config.tabDefs[value].content[0].url}>
                                 </PersistentDrawer>
                             </TabPanel>
                         })}

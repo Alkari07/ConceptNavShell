@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft(props) {
   const {
-    children, iframeSrc, title, ...other
+    children, iframeSrc, title, handleContentChange, ...other
   } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -102,6 +102,7 @@ export default function PersistentDrawerLeft(props) {
 
   const onListItemSelection = (index) => {
     console.log("Item selected", index );
+    handleContentChange(index);
   };
 
   return (
