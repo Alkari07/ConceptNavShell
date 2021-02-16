@@ -20,8 +20,8 @@ function TabPanel(props) {
     return (
         <div role='tabpanel'
         hidden={value !==index}
-        id={`simple-tabpanel`}
-        aria-labelledby={`simple-tab-${index}`}
+        id={`tabpanel-${index}`}
+        aria-labelledby={`tab-${index}`}
         {...other}
         >
             {value===index && (
@@ -41,8 +41,8 @@ TabPanel.propTypes = {
 
 function a11yProps (index) {
     return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
+        id: `tab-${index}`,
+        'aria-controls': `tabpanel-${index}`,
     }
 };
 
@@ -76,7 +76,7 @@ export default function SimpleTabs() {
                         </IconButton>
                     </Grid>
                     <Grid item xs={11}>
-                        <Tabs value={value} onChange={handleChange} aria-label="Simple tabs example" centered>
+                        <Tabs value={value} onChange={handleChange} centered>
                             {config.tabDefs.map((tab, index)=> {
                                 return <Tab label={tab.title} key={index} {...a11yProps(index)} />
                             })}
