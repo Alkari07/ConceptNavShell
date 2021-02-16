@@ -74,27 +74,19 @@ export default function SimpleTabs() {
                     </Grid>
                     <Grid item xs={11}>
                         <Tabs value={value} onChange={handleChange} aria-label="Simple tabs example" centered>
-                            <Tab label={config.tabDefs[0].title} {...a11yProps(0)} />
-                            <Tab label='Item Two' {...a11yProps(1)}/>
-                            <Tab label = 'Item Three' {...a11yProps(2)}/>
-                        </Tabs>
-                    <TabPanel value={value} index={0}>
-                        
-                        Item One
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <PersistentDrawer 
-                        title ={'Fire Fighting Dashboard'}
-                        iframeSrc={'https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik'}>
-                        </PersistentDrawer>
+                            {config.tabDefs.map((tab, index)=> {
+                                return <Tab label={tab.title} key={index} {...a11yProps(index)} />
+                            })}
 
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        <PersistentDrawer 
-                        title ={'Police Dashboard'}
-                        iframeSrc={'https://www.tutorialrepublic.com'}>
-                        </PersistentDrawer>
-                    </TabPanel>
+                        </Tabs>
+                        {config.tabDefs.map((tab, index)=> {
+                            return <TabPanel value={value} key={index} index={index}>
+                                <PersistentDrawer 
+                                    title ={config.tabDefs[value].content[0].label}
+                                    iframeSrc={config.tabDefs[value].content[0].url}>
+                                </PersistentDrawer>
+                            </TabPanel>
+                        })}
                     </Grid>
                 </Grid>
                 
