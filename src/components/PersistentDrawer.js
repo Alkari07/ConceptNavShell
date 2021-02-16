@@ -18,7 +18,7 @@ import LabelImportant from '@material-ui/icons/LabelImportant';
 import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
-const contentOffset = 300;
+const contentOffset = 350;
 const iframeHeight = 857;
 
 const useStyles = makeStyles((theme) => ({
@@ -68,14 +68,14 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -contentOffset,
-    marginRight: -contentOffset
+    marginRight: -drawerWidth
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginLeft: -contentOffset+drawerWidth,
     marginRight: -drawerWidth
   },
 }));
