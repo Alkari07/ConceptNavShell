@@ -63,7 +63,6 @@ export default function SimpleTabs() {
     }
 
     const handleContentChange = (newIndex) => {
-        console.log("Current Content Index: ", contentIndex);
         setContentIndex(newIndex);
     }
 
@@ -90,7 +89,10 @@ export default function SimpleTabs() {
                                     title ={config.tabDefs[value].content[contentIndex] ? 
                                         config.tabDefs[value].content[contentIndex].label : config.tabDefs[value].content[0].label}
                                     iframeSrc={config.tabDefs[value].content[contentIndex] ? 
-                                        config.tabDefs[value].content[contentIndex].url : config.tabDefs[value].content[0].url}>
+                                        config.tabDefs[value].content[contentIndex].url : config.tabDefs[value].content[0].url}
+                                    content={config.tabDefs[value].content}
+                                    >
+                                    
                                 </PersistentDrawer>
                             </TabPanel>
                         })}

@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
@@ -15,9 +14,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Container from '@material-ui/core/Container';
+import LabelImportant from '@material-ui/icons/LabelImportant';
 
 const drawerWidth = 240;
 const contentOffset = 300;
@@ -84,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerLeft(props) {
   const {
-    children, iframeSrc, title, handleContentChange, ...other
+    iframeSrc, title, handleContentChange, content
   } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -92,8 +90,6 @@ export default function PersistentDrawerLeft(props) {
 
   const handleDrawerOpen = () => {
     setOpen(true);
-    // let height = document.getElementById('contentIframe').contentWindow.document.body.scrollHeight;
-    // document.getElementById('contentIframe').height = height;
   };
 
   const handleDrawerClose = () => {
@@ -101,7 +97,6 @@ export default function PersistentDrawerLeft(props) {
   };
 
   const onListItemSelection = (index) => {
-    console.log("Item selected", index );
     handleContentChange(index);
   };
 
@@ -112,12 +107,6 @@ export default function PersistentDrawerLeft(props) {
           className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}>
-      {/* <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      > */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -132,7 +121,6 @@ export default function PersistentDrawerLeft(props) {
             {title}
           </Typography>
         </Toolbar>
-      {/* </AppBar> */}
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -149,37 +137,28 @@ export default function PersistentDrawerLeft(props) {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button onClick={()=>onListItemSelection(index)} key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {content.map((item, index) => (
+            <ListItem button onClick={()=>onListItemSelection(index)} key={index}>
+              <ListItemIcon>{<LabelImportant/>}</ListItemIcon>
+              <ListItemText primary={item.label} primaryTypographyProps={{variant:'body2'}}/>
             </ListItem>
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button onClick={()=>onListItemSelection(index)} key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
       >
-        <div /*className={classes.drawerHeader}*/ />
-            <div style={{height: iframeHeight+'px'}}>
+        <div style={{height: iframeHeight+'px'}}>
             <iframe className='iframeContent'
             frameBorder='0'
             height='100%'
             width='100%'
             id = 'contentIframe'
             src={iframeSrc} title="W3Schools Free Online Web Tutorials"></iframe>
-            </div>
+        </div>
       </main>
       </Container>
     </div>
