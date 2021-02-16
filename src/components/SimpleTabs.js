@@ -59,6 +59,7 @@ export default function SimpleTabs() {
     const [contentIndex=0, setContentIndex] = React.useState(0);
 
     const handleChange = (event,newValue) => {
+        setContentIndex(0);
         setValue(newValue);
     }
 
