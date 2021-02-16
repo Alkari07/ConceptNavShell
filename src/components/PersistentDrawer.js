@@ -16,6 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Container from '@material-ui/core/Container';
 import LabelImportant from '@material-ui/icons/LabelImportant';
+import Link from '@material-ui/core/Link';
 
 const drawerWidth = 240;
 const contentOffset = 300;
@@ -117,9 +118,7 @@ export default function PersistentDrawerLeft(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component={'span'} variant="h6" noWrap>
-            {title}
-          </Typography>
+          <Link variant ='h6' href={iframeSrc} color='inherit'>{title}</Link>
         </Toolbar>
       <Drawer
         className={classes.drawer}

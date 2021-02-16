@@ -71,7 +71,7 @@ export default function SimpleTabs() {
             <AppBar position='static'>
                 <Grid container spacing={0}>
                     <Grid item xs={1}>
-                        <IconButton onClick={()=> window.open('https://www.esri.com')}>
+                        <IconButton onClick={()=> window.open(config.portalHomeUrl)}>
                             <HomeIcon color='action' fontSize='large'/>
                         </IconButton>
                     </Grid>
